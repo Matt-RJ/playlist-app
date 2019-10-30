@@ -1,0 +1,8 @@
+.table {
+	font-family: Candara, Georgia, Serif;
+}
+
+.song-name, .album-name, .artist-name, .song-length, .song-rating {
+	font-style: italic;
+	color: #333333;
+}
