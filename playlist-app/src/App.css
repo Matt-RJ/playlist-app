@@ -1,22 +1,16 @@
-.App {
-  text-align: center;
+ul {
+	background-color: #333333;
 }
 
-.App-logo {
-  height: 40vmin;
+.PlaylistApp {
+	background-image: url("/../prism.png");
+	background-color: #333333;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.main-header {
+	color: red;
 }
 
-.App-link {
-  color: #09d3ac;
+.playlist-collection-container .container {
+	background-color: #333333;
 }

@@ -6,6 +6,7 @@ import Header from '../src/components/header/';
 import Song from '../src/components/song/';
 import Playlist from '../src/components/playlist';
 import PlaylistCollection from '../src/components/playlistcollection';
+import NewPlaylist from '../src/components/newplaylist';
 
 const sampleSong = {
 	name: "Just Wait",
@@ -41,4 +42,8 @@ storiesOf("Playlist App/Playlist", module).add("default", () => {
 
 storiesOf("Playlist App/PlaylistCollection", module).add("default", () => {
 	return <PlaylistCollection playlists = {samplePlaylistCollection.playlists} />
+})
+
+storiesOf("Playlist App/NewPlaylist", module).add("default", () => {
+	return <NewPlaylist />
 })

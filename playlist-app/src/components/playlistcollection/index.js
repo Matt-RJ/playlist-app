@@ -13,7 +13,7 @@ export default class PlaylistCollection extends Component {
 		
 		return (
 			<React.Fragment>
-				<ul className="list-group">
+				<ul className="list-group playlist-collection">
 					{allPlaylists}
 				</ul>
 				<button className="btn btn-success">Add new Playlist</button>

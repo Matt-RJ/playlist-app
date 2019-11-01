@@ -10,9 +10,9 @@ export default class Playlist extends Component {
 				{<Song song={s}/>}
 			</li>
 		));
-		
+
 		return (
-			<fragment>
+			<React.Fragment>
 				<div className="row justify-content-center">
 					<div className="col-md-5">
 						<p className="h5">Playlist name: {this.props.name}</p>
@@ -34,7 +34,7 @@ export default class Playlist extends Component {
 						</ul>
 					</div>
 				</div>
-			</fragment>
+			</React.Fragment>
 		);
 	}
 }
