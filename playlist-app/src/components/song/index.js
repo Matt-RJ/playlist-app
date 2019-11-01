@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import "./song.css";
 
-class Song extends Component {
+export default class Song extends Component {
 
 	render() {
 		return (
-			<fragment>
+			<React.Fragment>
 				<div className="container-fluid">
 						<div className="col">
 							<div className="row">
@@ -39,9 +39,7 @@ class Song extends Component {
 							</div>
 						</div>
 					</div>
-			</fragment>
+			</React.Fragment>
 		);
 	}
 }
-
-export default Song;

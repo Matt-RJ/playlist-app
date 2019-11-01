@@ -8,7 +8,7 @@ class Header extends Component {
 		return (
 			<div className="container-fluid">
 				<div className="row">
-					<div className="col-md-8 offset-4">
+					<div className="col-md-8">
 						<div className="header">
 							<h1>
 								Total playlists: 

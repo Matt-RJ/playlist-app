@@ -10,6 +10,7 @@ export default class Playlist extends Component {
 				{<Song song={s}/>}
 			</li>
 		));
+		
 		return (
 			<fragment>
 				<div className="row justify-content-center">
