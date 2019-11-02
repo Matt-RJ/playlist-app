@@ -1,6 +1,9 @@
 import React, {Component} from "react";
 import Song from "../song";
 import "./playlist.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import {faMinus} from "@fortawesome/free-solid-svg-icons";
 
 export default class Playlist extends Component {
 
@@ -23,12 +26,12 @@ export default class Playlist extends Component {
 
 							<li className="list-group-item">
 								<button type="button" className="btn btn-success">
-									Add Song
+									<FontAwesomeIcon icon={faPlus} /> Add Song
 								</button>
 							</li>
 							<li className="list-group-item">
 								<button type="button" className="btn btn-danger float-right">
-									Delete Playlist
+									<FontAwesomeIcon icon={faMinus} /> Delete Playlist
 								</button>
 							</li>
 						</ul>

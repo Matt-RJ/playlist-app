@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import "./newplaylist.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
 
 export default class NewPlaylist extends Component {
 
@@ -15,7 +17,7 @@ export default class NewPlaylist extends Component {
 							<input type="text" class="form-control col-xs-10" id="new-playlist-name" placeholder="E.g. Favourites"></input>
 						</div>
 						<div class="form-group row">
-							<button type="submit" class="btn btn-success">Create</button>
+							<button type="submit" class="btn btn-success"><FontAwesomeIcon icon={faPlus} /> Create</button>
 						</div>
 					</form>
 				</div>

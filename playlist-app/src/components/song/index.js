@@ -1,5 +1,7 @@
 import React, {Component} from "react";
 import "./song.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faMinus} from "@fortawesome/free-solid-svg-icons";
 
 export default class Song extends Component {
 
@@ -35,7 +37,9 @@ export default class Song extends Component {
 										</tr>
 									</tbody>
 								</table>
-								<button type="button" className="btn btn-danger float-right">Delete</button>
+								<button type="button" className="btn btn-danger float-right">
+									<FontAwesomeIcon icon={faMinus} /> Delete
+								</button>
 							</div>
 						</div>
 					</div>

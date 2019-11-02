@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import Playlist from "../playlist";
 import "./playlistcollection.css";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus} from "@fortawesome/free-solid-svg-icons";
 
 export default class PlaylistCollection extends Component {
 
@@ -16,7 +18,7 @@ export default class PlaylistCollection extends Component {
 				<ul className="list-group playlist-collection">
 					{allPlaylists}
 				</ul>
-				<button className="btn btn-success">Add new Playlist</button>
+				<button className="btn btn-success"><FontAwesomeIcon icon={faPlus} /> Add new Playlist</button>
 			</React.Fragment>
 		);
 	}
