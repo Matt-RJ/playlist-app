@@ -7,6 +7,7 @@ import {faPlus} from "@fortawesome/free-solid-svg-icons";
 export default class PlaylistCollection extends Component {
 
 	render() {
+		console.log(this.props);
 		const allPlaylists = this.props.playlists.map(p => (
 			<li className = "list-group-item">
 				{<Playlist name = {p.name} songs = {p.songs} />}
