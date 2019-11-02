@@ -1,0 +1,9 @@
+.header {
+  text-align: center;
+}
+
+.main-title {
+  text-decoration: bold;
+  font-family: Roboto, Verdana, Candara, sans-serif;
+  margin-bottom: 15px;
+}

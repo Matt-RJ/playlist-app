@@ -1,3 +1,11 @@
 .playlist-collection {
 	background-color: #333333;
 }
+
+.playlist-collection-container ul li {
+  background-color: #888888;
+}
+
+.playlist-collection-container {
+  
+}

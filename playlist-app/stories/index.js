@@ -49,6 +49,6 @@ storiesOf("Playlist App/NewPlaylist", module).add("default", () => {
 	return <NewPlaylist />
 })
 
-storiesOf("Playlist App/NewSong", module).add("defualt", () => {
+storiesOf("Playlist App/NewSong", module).add("default", () => {
 	return <NewSong />
 })

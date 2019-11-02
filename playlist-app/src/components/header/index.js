@@ -7,15 +7,26 @@ class Header extends Component {
 	render() {
 		return (
 			<div className="container-fluid">
-				<div className="row">
-					<div className="col-md-8">
-						<div className="header">
-							<h1>
-								Total playlists: 
-								<span className="badge badge-pill badge-info">{this.props.noPlaylists}</span>
-								Total songs:
-								<span className="badge badge-pill badge-info">{this.props.noSongs}</span>
-							</h1>
+				<div className="header">
+					<div className="row">
+						<div className="col-md main-title">
+							<p className="h1">
+								Playlist App
+							</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-md">
+							<p className="h5">
+								Total playlists: {this.props.noPlaylists}
+							</p>
+						</div>
+					</div>
+					<div className="row">
+						<div className="col-md">
+							<p className="h5">
+							Total songs: {this.props.noSongs}
+							</p>
 						</div>
 					</div>
 				</div>

@@ -3,6 +3,8 @@ import Header from './components/header';
 import Song from './components/song';
 import Playlist from './components/playlist';
 import PlaylistCollection from './components/playlistcollection';
+import NewSong from './components/newsong';
+import NewPlaylist from './components/newplaylist';
 import "./App.css";
 
 function App() {
@@ -26,12 +28,13 @@ function App() {
 
 	return (
 		<div className="PlaylistApp">
-			<div className="container bg-secondary p-4 rounded">
-				<Header class="main-header" noPlaylists={2} noSongs={5}/>
+			<div className="container col-md-8 bg-secondary p-2 rounded">
+				<Header className="main-header" noPlaylists={2} noSongs={5}/>
 				<div className="col-md-12 playlist-collection-container">
 					<PlaylistCollection playlists ={samplePlaylistCollection.playlists}/>
+					<NewPlaylist />
 				</div>
-			</div>
+			</div>class
 		</div>
 	);
 }

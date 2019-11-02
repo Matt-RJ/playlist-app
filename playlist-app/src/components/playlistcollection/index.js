@@ -18,7 +18,6 @@ export default class PlaylistCollection extends Component {
 				<ul className="list-group playlist-collection">
 					{allPlaylists}
 				</ul>
-				<button className="btn btn-success"><FontAwesomeIcon icon={faPlus} /> Add new Playlist</button>
 			</React.Fragment>
 		);
 	}

@@ -1,10 +1,5 @@
 .playlist {
 	background-color: #DDDDDD;
-	border: none;
-}
-
-.list-group-item {
-    border: none;
 }
 
 p {
