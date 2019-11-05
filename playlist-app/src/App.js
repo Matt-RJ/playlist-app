@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {Component} from 'react';
+
+// Components
 import Header from './components/header';
 import Song from './components/song';
 import Playlist from './components/playlist';
@@ -6,34 +8,77 @@ import PlaylistCollection from './components/playlistcollection';
 import NewSong from './components/newsong';
 import NewPlaylist from './components/newplaylist';
 import samplePlaylistCollection from './sampleplaylistcollection';
+
+// Other
+import localCache from "./localCache";
+import request from "superagent";
 import "./App.css";
 
-function App() {
+class App extends Component {
 
-	function getPlaylistCount(playlistCollection) {
-		return playlistCollection.playlists.length;
+	constructor(props) {
+		super(props);
+		this.state = {
+			
+		}
 	}
 
-	function getSongCount(playlistCollection) {
-		let playlistCount = playlistCollection.playlists.length;
+	componentDidMount() {
+		request.get("http://localhost:3001/playlistCollection").end((err, res) => {
+			if (res) {
+				let playlistCollection = JSON.parse(res.text);
+				console.log(playlistCollection);
+				localCache.populate(playlistCollection);
+				this.setState({});
+			} else {
+				console.log(err);
+			}
+		});
+	}
+
+	getPlaylistCount(playlistCollection) {
+		console.log(playlistCollection);
+		return playlistCollection.length;
+	}
+
+	getSongCount(playlistCollection) {
+		let playlistCount = playlistCollection.length;
 		let totalSongs = 0;
 		for (let i = 0; i < playlistCount; i++) {
-			totalSongs += playlistCollection.playlists[i].songs.length;
+			if (playlistCollection[i].songs !== undefined) {
+				totalSongs += playlistCollection[i].songs.length;
+			}
 		}
 		return totalSongs;
 	}
 
-	return (
-		<div className="PlaylistApp">
-			<div className="container col-md-8 bg-secondary p-2 rounded">
-				<Header className="main-header" noPlaylists={getPlaylistCount(samplePlaylistCollection)} noSongs={getSongCount(samplePlaylistCollection)}/>
-				<div className="col-md-12 playlist-collection-container">
-					<PlaylistCollection playlists = {samplePlaylistCollection.playlists}/>
-					<NewPlaylist />
+	render() {
+		console.log("App render.");
+		let newPlaylistCollection = localCache.getPlaylistCollection();
+		let headerPlaylistCount = 0;
+		let headerSongCount = 0;
+		if (newPlaylistCollection !== null && newPlaylistCollection !== undefined) {
+			headerPlaylistCount = this.getPlaylistCount(newPlaylistCollection);
+			headerSongCount = this.getSongCount(newPlaylistCollection);
+		}
+
+		return (
+			<div className="PlaylistApp">
+				<div className="container col-md-8 bg-secondary p-2 rounded">
+					<Header 
+						className="main-header"
+						noPlaylists={headerPlaylistCount}
+						noSongs={headerSongCount}
+					/>
+					<div className="col-md-12 playlist-collection-container">
+						<PlaylistCollection playlists = {newPlaylistCollection}/>
+						<NewPlaylist />
+					</div>
 				</div>
-			</div>class
-		</div>
-	);
+			</div>
+		);
+	}
+	
 }
 
 export default App;
