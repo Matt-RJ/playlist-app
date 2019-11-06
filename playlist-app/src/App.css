@@ -5,6 +5,7 @@ ul {
 .PlaylistApp {
 	background-image: url("/../prism.png");
 	background-color: #333333;
+  min-height: 100vh;
 }
 
 .main-header {
@@ -13,4 +14,5 @@ ul {
 
 .playlist-collection-container .container {
 	background-color: #333333;
+  height: 200px;
 }

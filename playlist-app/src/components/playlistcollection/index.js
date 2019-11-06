@@ -19,7 +19,7 @@ export default class PlaylistCollection extends Component {
 	render() {
 		console.log(this.props)
 		let allPlaylists = null;
-		if (this.props.playlists != undefined || this.props.playlists != null) {
+		if (this.props.playlists !== undefined && this.props.playlists !== null) {
 			allPlaylists = this.props.playlists.map(p => (
 			<li className = "list-group-item">
 				{<Playlist name = {p.name} songs = {p.songs} />}

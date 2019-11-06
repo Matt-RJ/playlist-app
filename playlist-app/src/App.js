@@ -2,16 +2,14 @@ import React, {Component} from 'react';
 
 // Components
 import Header from './components/header';
-import Song from './components/song';
-import Playlist from './components/playlist';
 import PlaylistCollection from './components/playlistcollection';
-import NewSong from './components/newsong';
 import NewPlaylist from './components/newplaylist';
 import samplePlaylistCollection from './sampleplaylistcollection';
 
 // Other
 import localCache from "./localCache";
 import request from "superagent";
+import api from './dataStore/stubAPI';
 import "./App.css";
 
 class App extends Component {
@@ -21,8 +19,10 @@ class App extends Component {
 		this.state = {
 			
 		}
+
 	}
 
+	/*
 	componentDidMount() {
 		request.get("http://localhost:3001/playlistCollection").end((err, res) => {
 			if (res) {
@@ -35,6 +35,7 @@ class App extends Component {
 			}
 		});
 	}
+	*/
 
 	getPlaylistCount(playlistCollection) {
 		console.log(playlistCollection);
@@ -53,6 +54,7 @@ class App extends Component {
 	}
 
 	render() {
+		localCache.populate(api.getAll());
 		console.log("App render.");
 		let newPlaylistCollection = localCache.getPlaylistCollection();
 		let headerPlaylistCount = 0;
@@ -64,7 +66,7 @@ class App extends Component {
 
 		return (
 			<div className="PlaylistApp">
-				<div className="container col-md-8 bg-secondary p-2 rounded">
+				<div className="container-fluid col-md-8 bg-secondary p-2 rounded">
 					<Header 
 						className="main-header"
 						noPlaylists={headerPlaylistCount}
