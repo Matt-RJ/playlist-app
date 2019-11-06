@@ -70,6 +70,9 @@ class StubAPI {
         songs
       }
     );
+
+    console.log("Created a playlist named " + name);
+    console.log(this.playlistCollection);
   }
 
   addSong(playlistId, name, artist, album, length, rating) {

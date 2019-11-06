@@ -2,10 +2,12 @@ import React, {Component} from "react";
 import "./song.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMinus} from "@fortawesome/free-solid-svg-icons";
+import {faStar} from "@fortawesome/free-solid-svg-icons";
 
 export default class Song extends Component {
 
   render() {
+    
     return (
       <React.Fragment>
         <div className="container-fluid">
