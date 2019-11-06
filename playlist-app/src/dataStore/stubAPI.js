@@ -5,7 +5,7 @@ class StubAPI {
     this.playlistCollection = [
       {
         "id": 1,
-        "name": "TestPlaylist1",
+        "name": "Favourites",
         "songs": 
         [
           {
@@ -28,7 +28,7 @@ class StubAPI {
       },
       {
         "id": 2,
-        "name": "TestPlaylist2",
+        "name": "Jazz",
         "songs": 
         [
           {
@@ -54,15 +54,15 @@ class StubAPI {
 
   getAll() {
     return this.playlistCollection;
+    console.log(this.playlistCollection);
   }
 
-  addPlaylist(name) {
-    let id = 0;
+  addPlaylist(name, callback) {
+    let id = 1;
     let songs=[];
-    let last = _.last(this.playlistcollection);
-    if (last) {
-      id = last.id++;
-    }
+    let last = _.last(this.playlistCollection).id;
+    console.log(last);
+    if (last) id = ++last;
     this.playlistCollection.push(
       {
         id,
@@ -72,7 +72,7 @@ class StubAPI {
     );
 
     console.log("Created a playlist named " + name);
-    console.log(this.playlistCollection);
+    if (callback) callback();
   }
 
   addSong(playlistId, name, artist, album, length, rating) {

@@ -3,8 +3,8 @@ import React, {Component} from 'react';
 // Components
 import Header from './components/header';
 import PlaylistCollection from './components/playlistcollection';
-import NewPlaylist from './components/newplaylist';
 import samplePlaylistCollection from './sampleplaylistcollection';
+import NewPlaylist from './components/newplaylist';
 
 // Other
 import localCache from "./localCache";
@@ -20,25 +20,14 @@ class App extends Component {
 			
 		}
 
-	}
+		// Used for setting up child compoment props
+		this.headerPlaylistCount = 0;
+		this.headerSongCount = 0;
+		this.playlistCollection = null;
 
-	/*
-	componentDidMount() {
-		request.get("http://localhost:3001/playlistCollection").end((err, res) => {
-			if (res) {
-				let playlistCollection = JSON.parse(res.text);
-				console.log(playlistCollection);
-				localCache.populate(playlistCollection);
-				this.setState({});
-			} else {
-				console.log(err);
-			}
-		});
 	}
-	*/
 
 	getPlaylistCount(playlistCollection) {
-		console.log(playlistCollection);
 		return playlistCollection.length;
 	}
 
@@ -53,28 +42,35 @@ class App extends Component {
 		return totalSongs;
 	}
 
-	render() {
+	prepareComponentData() {
 		localCache.populate(api.getAll());
-		console.log("App render.");
-		let newPlaylistCollection = localCache.getPlaylistCollection();
-		let headerPlaylistCount = 0;
-		let headerSongCount = 0;
-		if (newPlaylistCollection !== null && newPlaylistCollection !== undefined) {
-			headerPlaylistCount = this.getPlaylistCount(newPlaylistCollection);
-			headerSongCount = this.getSongCount(newPlaylistCollection);
+		this.newPlaylistCollection = localCache.getPlaylistCollection();
+		this.headerPlaylistCount = 0;
+		this.headerSongCount = 0;
+		if (this.newPlaylistCollection !== null && this.newPlaylistCollection !== undefined) {
+			this.headerPlaylistCount = this.getPlaylistCount(this.newPlaylistCollection);
+			this.headerSongCount = this.getSongCount(this.newPlaylistCollection);
 		}
+	}
+
+	refresh = () => {
+		this.setState({});
+	}
+
+	render() {
+		this.prepareComponentData();
 
 		return (
 			<div className="PlaylistApp">
 				<div className="container-fluid col-md-8 bg-secondary p-2 rounded">
 					<Header 
 						className="main-header"
-						noPlaylists={headerPlaylistCount}
-						noSongs={headerSongCount}
+						noPlaylists={this.headerPlaylistCount}
+						noSongs={this.headerSongCount}
 					/>
 					<div className="col-md-12 playlist-collection-container">
-						<PlaylistCollection playlists = {newPlaylistCollection}/>
-						<NewPlaylist />
+						<PlaylistCollection playlists = {this.newPlaylistCollection}/>
+						<NewPlaylist refresh={this.refresh} />
 					</div>
 				</div>
 			</div>

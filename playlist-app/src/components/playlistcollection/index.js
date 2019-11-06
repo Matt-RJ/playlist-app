@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import Playlist from "../playlist";
 import "./playlistcollection.css";
+import NewPlaylist from "../../components/newplaylist";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 
@@ -13,7 +14,7 @@ export default class PlaylistCollection extends Component {
 			playlists: [
 				
 			]
-		}
+		};
 	}
 
 	render() {

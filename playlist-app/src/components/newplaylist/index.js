@@ -10,7 +10,8 @@ export default class NewPlaylist extends Component {
 		super(props);
 		this.state = {
 			"name": "",
-		}
+		};
+    this.createPlaylist = this.createPlaylist.bind(this);
 	}
 
 	// Updates the state of this component with whatever name is in the text box
@@ -20,11 +21,14 @@ export default class NewPlaylist extends Component {
 		});
 	}
 
+  handleSubmit = () => {
+    this.props.updateParent();
+  }
+
 	createPlaylist = (event) => {
-		console.log("CREATE PLAYLIST CLICKED")
-		event.preventDefault(); // Stops Bootstrap from refreshing the page
+    event.preventDefault();
 		api.addPlaylist(this.state.name, () => {
-			console.log(api.playlistCollection);
+      this.props.refresh();
 		});
 	}
 

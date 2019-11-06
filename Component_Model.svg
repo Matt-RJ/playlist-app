@@ -48,9 +48,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.31046226"
-     inkscape:cx="817.47026"
-     inkscape:cy="2116.9398"
+     inkscape:zoom="0.62092452"
+     inkscape:cx="1131.214"
+     inkscape:cy="2483.1188"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -812,7 +812,7 @@
          style="stroke-width:0.26458332">PlaylistApp</tspan></text>
     <rect
        y="-433.24997"
-       x="58.208332"
+       x="19.843752"
        height="15.875"
        width="60.854164"
        id="rect4981"
@@ -820,17 +820,17 @@
     <text
        id="text4985"
        y="-421.97641"
-       x="62.566467"
+       x="24.201887"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          style="stroke-width:0.26458332"
          y="-421.97641"
-         x="62.566467"
+         x="24.201887"
          id="tspan4983"
          sodipodi:role="line">Header</tspan></text>
     <rect
        y="-433.22452"
-       x="132.31712"
+       x="93.952545"
        height="15.824104"
        width="86.796097"
        id="rect4987"
@@ -838,11 +838,13 @@
     <text
        id="text4991"
        y="-421.97641"
-       x="136.6498"
-       style="font-style:normal;font-weight:normal;font-size:10.58333333px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332;-inkscape-font-specification:'sans-serif, Normal';font-stretch:normal;font-variant:normal;text-anchor:start;text-align:start;writing-mode:lr;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;"
+       x="98.285217"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          sodipodi:role="line"
-         id="tspan1009">PlaylistCollection</tspan></text>
+         id="tspan1009"
+         x="98.285217"
+         y="-421.97641">PlaylistCollection</tspan></text>
     <flowRoot
        xml:space="preserve"
        id="flowRoot4993"
@@ -859,18 +861,18 @@
        id="rect5001"
        width="60.854164"
        height="15.875"
-       x="94.327019"
-       y="-399.54147" />
+       x="105.81754"
+       y="-396.9848" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="98.685158"
-       y="-388.26791"
+       x="110.17567"
+       y="-385.71124"
        id="text5005"><tspan
          sodipodi:role="line"
          id="tspan5003"
-         x="98.685158"
-         y="-388.26791"
+         x="110.17567"
+         y="-385.71124"
          style="stroke-width:0.26458332">PlayList</tspan></text>
     <flowRoot
        xml:space="preserve"
@@ -904,42 +906,44 @@
            x="240"
            y="898.58276" /></flowRegion><flowPara
          id="flowPara5029" /></flowRoot>    <rect
-       y="-363.48849"
-       x="59.526123"
+       y="-360.93182"
+       x="71.01664"
        height="15.875"
        width="60.854164"
        id="rect5031"
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.26458332;stroke-opacity:1" />
     <text
        id="text5035"
-       y="-352.21494"
-       x="63.884262"
+       y="-349.65826"
+       x="75.374779"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          style="stroke-width:0.26458332"
-         y="-352.21494"
-         x="63.884262"
+         y="-349.65826"
+         x="75.374779"
          id="tspan5033"
          sodipodi:role="line">Song</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 116.41667,-449.12498 -25.135421,15.875"
+       d="m 116.46868,-449.12497 -63.552011,15.875"
        id="path5059"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 133.61458,-449.12498 27.78125,15.875"
+       d="m 124.77805,-449.12497 4.3015,16.08806"
        id="path5061"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 161.39583,-417.37498 -38.41659,17.83349"
+       d="m 132.40572,-417.16191 0.99878,20.1771"
        id="path5063"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 114.54265,-383.51583 -26.213674,20.17801"
+       d="m 126.03316,-380.95915 -26.21367,20.17801"
        id="path5065"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -1181,48 +1185,49 @@
        id="rect5176"
        width="60.854164"
        height="15.875"
-       x="136.50996"
-       y="-363.33783" />
+       x="148.00047"
+       y="-360.78116" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="140.8681"
-       y="-352.06427"
+       x="152.35861"
+       y="-349.5076"
        id="text5180"><tspan
          sodipodi:role="line"
          id="tspan5178"
-         x="140.8681"
-         y="-352.06427"
+         x="152.35861"
+         y="-349.5076"
          style="stroke-width:0.26458332">NewSong</tspan></text>
     <path
        sodipodi:nodetypes="cc"
        inkscape:connector-curvature="0"
        id="path5182"
-       d="m 129.75863,-383.66649 36.38578,20.34538"
+       d="m 141.24914,-381.10981 36.38578,20.34538"
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <rect
-       y="-399.54147"
-       x="187.28011"
+       y="-433.13718"
+       x="188.33469"
        height="15.875"
        width="60.854164"
        id="rect5184"
        style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.26458332;stroke-opacity:1" />
     <text
        id="text5188"
-       y="-388.26791"
-       x="191.63824"
+       y="-421.86362"
+       x="192.69283"
        style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"><tspan
          style="stroke-width:0.26458332"
-         y="-388.26791"
-         x="191.63824"
+         y="-421.86362"
+         x="192.69283"
          id="tspan5186"
          sodipodi:role="line">NewPlaylist</tspan></text>
     <path
        style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
-       d="m 172.19673,-417.39797 45.79861,17.77708"
+       d="m 135.43387,-449.12942 83.61604,15.91284"
        id="path5190"
-       inkscape:connector-curvature="0" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
     <rect
        y="-29.656731"
        x="269.10455"
