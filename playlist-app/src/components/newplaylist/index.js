@@ -41,7 +41,7 @@ export default class NewPlaylist extends Component {
           <form onSubmit={this.createPlaylist}>
             <div className="form-group row">
               <label className="control-label col-xs-2" htmlFor="new-playlist-name">Name</label>
-              <input type="text" className="form-control col-xs-10" id="new-playlist-name" placeholder="E.g. Favourites" onChange={this.handleNameChange}></input>
+              <input requried type="text" className="form-control col-xs-10" id="new-playlist-name" placeholder="E.g. Favourites" onChange={this.handleNameChange}></input>
             </div>
             <div className="form-group row">
               <button type="submit" className="btn btn-success"><FontAwesomeIcon icon={faPlus} /> Create</button>

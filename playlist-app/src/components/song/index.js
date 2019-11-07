@@ -9,14 +9,19 @@ export default class Song extends Component {
 
   constructor(props) {
     super(props);
-    console.log("SONG PROPS:");
-    console.log(this.props);
   }
 
   deleteSong = (event) => {
     api.deleteSong(this.props.playlistId, this.props.id, () => {
       this.props.refresh();
     });
+  }
+
+  createStars(starCount) {
+    let stars = new Array(parseInt(starCount)).fill(undefined).map(() => {
+      return <FontAwesomeIcon className="song-star" icon={faStar} />;
+    });
+    return stars;
   }
 
   render() {
@@ -48,7 +53,7 @@ export default class Song extends Component {
                     </tr>
                     <tr>
                       <td>Rating</td>
-                      <td className="song-rating">{this.props.song.rating}/5</td>
+                      <td class="song-rating-stars" className="song-rating-stars">{this.createStars(this.props.song.rating)}</td>
                     </tr>
                   </tbody>
                 </table>

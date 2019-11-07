@@ -8,68 +8,111 @@ import {faStar} from "@fortawesome/free-solid-svg-icons";
 
 export default class NewSong extends Component {
 
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      "name": "",
+      "artist": "",
+      "album": "",
+      "length": "",
+      "rating": ""
+    }
+  }
+
+  handleNamechange = (event) => {
+    this.setState({"name": event.target.value}, () => {
+      console.log(this.state);
+    });
+  }
+
+  handleArtistChange = (event) => {
+    this.setState({"artist": event.target.value}, () => {
+      console.log(this.state);
+    });
+  }
+
+  handleAlbumChange = (event) => {
+    this.setState({"album": event.target.value}, () => {
+      console.log(this.state);
+    });
+  }
+
+  handleLengthChange = (event) => {
+    this.setState({"length": event.target.value}, () => {
+      console.log(this.state);
+    });
+  }
+
+  handleRatingChange(rating) {
+    this.setState({"rating": rating}, () => {
+      console.log(this.state);
+    })
+  }
+
+  createSong = (event) => {
+    event.preventDefault();
+    api.addSong(this.props.playlistId,
+                this.state.name,
+                this.state.artist,
+                this.state.album,
+                this.state.length,
+                this.state.rating,
+                ()=> {
+      this.props.refresh();
+    });
+  }
+
+  createStars(starCount) {
+    let stars = new Array(starCount).fill(undefined).map(() => {
+      return <FontAwesomeIcon icon={faStar} />;
+    });
+    return stars;
+  }
+
+  createRatingButton(ratingValue) {
+    return (
+      <div className="radio">
+        <label>
+          <input required type="radio" name="new-song-rating" onClick={() => this.handleRatingChange(ratingValue)}></input>
+          {this.createStars(ratingValue)}
+        </label>
+      </div>
+    )
+  }
+
   render() {
     
     return (
       <React.Fragment>
         <div className="new-song-form">
           <p className="h5">Add a Song</p>
-          <form>
+          <form onSubmit={this.createSong}>
             <div className="col">
               <div className="form-group row">
                 <label className="control-label col-xs-2" htmlFor="new-song-name">Name</label>
-                <input type="text" className="form-control col-xs-10" id="new-song-name"></input>
+                <input required type="text" className="form-control col-xs-10" id="new-song-name" onChange={this.handleNamechange}></input>
               </div>
               <div className="form-group row">
                 <label className="control-label col-xs-2" htmlFor="new-song-artist">Artist</label>
-                <input type="text" className="form-control col-xs-10" id="new-song-artist"></input>
+                <input required type="text" className="form-control col-xs-10" id="new-song-artist" onChange={this.handleArtistChange}></input>
               </div>
               <div className="form-group row">
                 <label className="control-label col-xs-2" htmlFor="new-song-album">Album</label>
-                <input type="text" className="form-control col-xs-10" id="new-song-album"></input>
+                <input required type="text" className="form-control col-xs-10" id="new-song-album" onChange={this.handleAlbumChange}></input>
               </div>
               <div className="form-group row">
                 <label className="control-label col-xs-2" htmlFor="new-song-length">Length</label>
-                <input type="text" className="form-control col-xs-10" id="new-song-length" placeholder="E.g. 4:53"></input>
+                <input required type="text" className="form-control col-xs-10" id="new-song-length" placeholder="E.g. 4:53" onChange={this.handleLengthChange}></input>
               </div>
               <div className="form-group">
                 <label className="control-label" htmlFor="new-song-rating">Rating</label>
                 <div className="new-song-rating">
-                  <div className="radio">
-                    <label><input type="radio" name="new-song-rating"></input>
-                      <FontAwesomeIcon icon={faStar} />
-                    </label>
-                  </div>
-                  <div className="radio">
-                    <label><input type="radio" name="new-song-rating"></input>
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                    </label>
-                  </div>
-                  <div className="radio">
-                    <label><input type="radio" name="new-song-rating"></input>
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                    </label>
-                  </div>
-                  <div className="radio">
-                    <label><input type="radio" name="new-song-rating"></input>
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} /> 
-                    </label>
-                  </div>
-                  <div className="radio">
-                    <label><input type="radio" name="new-song-rating"></input>
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                      <FontAwesomeIcon icon={faStar} />
-                    </label>
-                  </div>
+                  {this.createRatingButton(1)}
+                  {this.createRatingButton(2)}
+                  {this.createRatingButton(3)}
+                  {this.createRatingButton(4)}
+                  {this.createRatingButton(5)}
                 </div>
               </div>
               <div className="form-group row">

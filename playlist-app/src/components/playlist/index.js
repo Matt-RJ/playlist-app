@@ -51,7 +51,7 @@ export default class Playlist extends Component {
               {songsInPlaylist}
 
               <li className="list-group-item border-0">
-                <NewSong />
+                <NewSong playlistId={this.props.id} refresh={this.props.refresh}/>
               </li>
               <li className="list-group-item border-0">
                 <button type="submit" className="btn btn-danger float-right" onClick={this.deletePlaylist}>

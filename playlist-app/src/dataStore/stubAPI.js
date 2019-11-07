@@ -109,7 +109,7 @@ class StubAPI {
       "rating": rating
     }
 
-    playlist.push(song);
+    playlist.songs.push(song);
 
     if (callback) callback();
   }
