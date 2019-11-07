@@ -91,9 +91,37 @@ class StubAPI {
     if (callback) callback();
   }
 
-  addSong(playlistId, name, artist, album, length, rating) {
+  addSong(playlistId, name, artist, album, length, rating, callback) {
     // TODO
-    
+    let playlist = _.find(this.playlistCollection, {id: playlistId});
+    let newSongId = 1;
+    let last = _.last(playlist);
+    if (last) {
+      let lastId = last.id;
+      newSongId = ++ lastId;
+    }
+    let song = {
+      "id": newSongId,
+      "name": name,
+      "artist": artist,
+      "album": album,
+      "length": length,
+      "rating": rating
+    }
+
+    playlist.push(song);
+
+    if (callback) callback();
+  }
+
+  deleteSong(playlistId, songId, callback) {
+    console.log("Deleting song from playlist with id: " + playlistId + " and song id: " + songId);
+    let playlist = _.find(this.playlistCollection, {id: playlistId});
+    let song = _.find(playlist, {id: songId});
+
+    playlist.songs.splice(_.indexOf(playlist.songs,
+     _.find(playlist.songs, {id: songId})), 1);
+    if (callback) callback();
   }
 }
 

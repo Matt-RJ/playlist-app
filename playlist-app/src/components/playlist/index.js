@@ -11,6 +11,7 @@ export default class Playlist extends Component {
 
   constructor(props) {
     super(props);
+    console.log(props);
   }
 
   deletePlaylist = (event) => {
@@ -30,7 +31,7 @@ export default class Playlist extends Component {
     if (this.props.songs !== undefined && this.props.songs !== null) {
       songsInPlaylist = this.props.songs.map(s => (
       <li className="list-group-item playlist border-0">
-        {<Song song={s}/>}
+        {<Song song={s} playlistId={this.props.id} id={s.id} refresh={this.props.refresh}/>}
       </li>
       ));
       songCount = this.props.songs.length;
