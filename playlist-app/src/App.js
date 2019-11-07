@@ -69,7 +69,7 @@ class App extends Component {
 						noSongs={this.headerSongCount}
 					/>
 					<div className="col-md-12 playlist-collection-container">
-						<PlaylistCollection playlists = {this.newPlaylistCollection}/>
+						<PlaylistCollection playlists = {this.newPlaylistCollection} refresh={this.refresh}/>
 						<NewPlaylist refresh={this.refresh} />
 					</div>
 				</div>

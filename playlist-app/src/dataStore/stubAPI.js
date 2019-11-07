@@ -60,9 +60,12 @@ class StubAPI {
   addPlaylist(name, callback) {
     let id = 1;
     let songs=[];
-    let last = _.last(this.playlistCollection).id;
+    let last = _.last(this.playlistCollection);
     console.log(last);
-    if (last) id = ++last;
+    if (last){
+      let lastId = last.id;
+      id = ++lastId;
+    }
     this.playlistCollection.push(
       {
         id,
@@ -72,6 +75,19 @@ class StubAPI {
     );
 
     console.log("Created a playlist named " + name);
+    if (callback) callback();
+  }
+
+  deletePlaylist(id, callback) {
+    let playlist = _.find(this.playlistCollection, {id: id});
+    console.log("Playlist ID to delete: " + id);
+    console.log("Playlist found: " + playlist);
+
+    this.playlistCollection.splice(_.indexOf(this.playlistCollection,
+     _.find(this.playlistCollection, {id: id})), 1);
+
+    console.log(this.playlistCollection);
+
     if (callback) callback();
   }
 

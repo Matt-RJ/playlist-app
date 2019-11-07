@@ -5,8 +5,22 @@ import "./playlist.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {faMinus} from "@fortawesome/free-solid-svg-icons";
+import api from "../../dataStore/stubAPI.js";
 
 export default class Playlist extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  deletePlaylist = (event) => {
+    event.preventDefault();
+    console.log("Deleting playlist with ID: " + this.props.id);
+    api.deletePlaylist(this.props.id, () => {
+      this.props.refresh();
+    });
+
+  }
 
   render() {
 
@@ -39,7 +53,7 @@ export default class Playlist extends Component {
                 <NewSong />
               </li>
               <li className="list-group-item border-0">
-                <button type="button" className="btn btn-danger float-right">
+                <button type="submit" className="btn btn-danger float-right" onClick={this.deletePlaylist}>
                   <FontAwesomeIcon icon={faMinus} /> Delete Playlist '{playlistName}'
                 </button>
               </li>
