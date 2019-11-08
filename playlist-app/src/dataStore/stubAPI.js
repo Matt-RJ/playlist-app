@@ -54,7 +54,6 @@ class StubAPI {
 
   getAll() {
     return this.playlistCollection;
-    console.log(this.playlistCollection);
   }
 
   addPlaylist(name, callback) {

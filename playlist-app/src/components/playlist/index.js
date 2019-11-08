@@ -44,8 +44,10 @@ export default class Playlist extends Component {
       <React.Fragment>
         <div className="row justify-content-center">
           <div className="col-md-8">
-            <p className="h5">Playlist name: {playlistName}</p>
-            <p className="h6">Songs: {songCount}</p>
+            <div className="playlist-header">
+              <p className="h5">Playlist name: {playlistName}</p>
+              <p className="h6">Songs: {songCount}</p>
+            </div>
             <ul className ="list-group border-0">
             
               {songsInPlaylist}
