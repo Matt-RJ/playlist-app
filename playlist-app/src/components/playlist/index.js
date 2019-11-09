@@ -11,12 +11,10 @@ export default class Playlist extends Component {
 
   constructor(props) {
     super(props);
-    console.log(props);
   }
 
   deletePlaylist = (event) => {
     event.preventDefault();
-    console.log("Deleting playlist with ID: " + this.props.id);
     api.deletePlaylist(this.props.id, () => {
       this.props.refresh();
     });

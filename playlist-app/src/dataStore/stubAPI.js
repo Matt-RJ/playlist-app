@@ -35,13 +35,13 @@ class StubAPI {
             "id": 1,
             "name": "Another Sunny Day",
             "artist": "JABBERLOOP",
-            "album": "New",
+            "album": "Sememoeru",
             "length": "4:02",
             "rating": "5"
           },
           {
             "id": 2,
-            "name": "Moanin\"",
+            "name": "Moanin'",
             "artist": "Mingus Big Band",
             "album": "Nostalgia In Times Square",
             "length": "9:02",
@@ -56,6 +56,21 @@ class StubAPI {
             "rating": "5"
           }
         ]
+      },
+      {
+        "id": 3,
+        "name": "Other",
+        "songs":
+        [
+          {
+            "id": 1,
+            "name": "Shallow Grave",
+            "artist": "Matthew Santos",
+            "album": "Quickly Disappearing",
+            "length": "4:55",
+            "rating": "3"
+          }
+        ]
       }
     ]
   }
@@ -68,7 +83,6 @@ class StubAPI {
     let id = 1;
     let songs=[];
     let last = _.last(this.playlistCollection);
-    console.log(last);
     if (last){
       let lastId = last.id;
       id = ++lastId;
@@ -81,19 +95,14 @@ class StubAPI {
       }
     );
 
-    console.log("Created a playlist named " + name);
     if (callback) callback();
   }
 
   deletePlaylist(id, callback) {
     let playlist = _.find(this.playlistCollection, {id: id});
-    console.log("Playlist ID to delete: " + id);
-    console.log("Playlist found: " + playlist);
 
     this.playlistCollection.splice(_.indexOf(this.playlistCollection,
      _.find(this.playlistCollection, {id: id})), 1);
-
-    console.log(this.playlistCollection);
 
     if (callback) callback();
   }
@@ -122,7 +131,6 @@ class StubAPI {
   }
 
   deleteSong(playlistId, songId, callback) {
-    console.log("Deleting song from playlist with id: " + playlistId + " and song id: " + songId);
     let playlist = _.find(this.playlistCollection, {id: playlistId});
     let song = _.find(playlist, {id: songId});
 
@@ -132,7 +140,6 @@ class StubAPI {
   }
 
   getBiggestPlaylist() {
-    console.log("GETTING BIGGEST PLAYLIST")
     if (this.playlistCollection.length === 0) {
       return undefined;
     }
@@ -142,12 +149,54 @@ class StubAPI {
   }
 
   getSmallestPlaylist() {
-    console.log("GETTING SMALLEST PLAYLIST")
     if (this.playlistCollection.length === 0) {
       return undefined;
     }
     let min = _.minBy(this.playlistCollection, "songs");
     return min;
+  }
+
+  getSongById(playlistId, songId, callback) {
+    let playlist = _.find(this.playlistCollection, {id: playlistId});
+    if (playlist === undefined) return undefined;
+    let song = _.find(playlist.songs, {id: songId});
+    return song;
+  }
+
+  getHighestRatedSong() {
+    let playlists = this.playlistCollection;
+    let highestPlaylistId = 0;
+    let highestSongId = 0;
+    let highestRating = 0;
+    for (let i = 0; i < playlists.length; i++) {
+      for (let j = 0; j < playlists[i].songs.length; j++) {
+        let currentSong = playlists[i].songs[j];
+        if (currentSong.rating > highestRating) {
+          highestRating = parseInt(currentSong.rating);
+          highestPlaylistId = playlists[i].id;
+          highestSongId = currentSong.id;
+        }
+      }
+    }
+    return [highestPlaylistId, highestSongId];
+  }
+
+  getLowestRatedSong() {
+    let playlists = this.playlistCollection;
+    let lowestPlaylistId = 0;
+    let lowestSongId = 0;
+    let lowestRating = 6;
+    for (let i = 0; i < playlists.length; i++) {
+      for (let j = 0; j < playlists[i].songs.length; j++) {
+        let currentSong = playlists[i].songs[j];
+        if (currentSong.rating < lowestRating) {
+          lowestRating = parseInt(currentSong.rating);
+          lowestPlaylistId = playlists[i].id;
+          lowestSongId = currentSong.id;
+        }
+      }
+    }
+    return [lowestPlaylistId, lowestSongId];
   }
 
 }

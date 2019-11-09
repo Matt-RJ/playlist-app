@@ -1,9 +1,10 @@
-.statistics-container {
-  background-color: grey;
-}
-
-.stats-page {
+.external-links-page {
   background-image: url("/../prism.png");
   background-color: #333333;
   min-height: 100vh;
+}
+
+.button-div {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }

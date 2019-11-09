@@ -18,12 +18,10 @@ export default class PlaylistCollection extends Component {
 	}
 
 	refresh() {
-		console.log(this.props.refresh);
 		this.props.refresh();
 	}
 
 	render() {
-		console.log(this.props)
 		let allPlaylists = null;
 		if (this.props.playlists !== undefined && this.props.playlists !== null) {
 			allPlaylists = this.props.playlists.map(p => (

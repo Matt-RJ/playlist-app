@@ -8,7 +8,6 @@ import NewPlaylist from './components/newplaylist';
 
 // Other
 import localCache from "./localCache";
-import request from "superagent";
 import api from './dataStore/stubAPI';
 import "./App.css";
 
@@ -19,18 +18,18 @@ class App extends Component {
 		this.state = {
 			
 		}
-
+		
 		// Used for setting up child compoment props
 		this.headerPlaylistCount = 0;
 		this.headerSongCount = 0;
 		this.playlistCollection = null;
 
 	}
-
+	
 	getPlaylistCount(playlistCollection) {
 		return playlistCollection.length;
 	}
-
+	
 	getSongCount(playlistCollection) {
 		let playlistCount = playlistCollection.length;
 		let totalSongs = 0;
@@ -41,7 +40,7 @@ class App extends Component {
 		}
 		return totalSongs;
 	}
-
+	
 	prepareComponentData() {
 		localCache.populate(api.getAll());
 		this.newPlaylistCollection = localCache.getPlaylistCollection();
@@ -52,11 +51,11 @@ class App extends Component {
 			this.headerSongCount = this.getSongCount(this.newPlaylistCollection);
 		}
 	}
-
+	
 	refresh = () => {
 		this.setState({});
 	}
-
+	
 	render() {
 		this.prepareComponentData();
 		api.getBiggestPlaylist();
@@ -70,8 +69,9 @@ class App extends Component {
 						noSongs={this.headerSongCount}
 					/>
 					<div className="col-md-12 playlist-collection-container">
-						<PlaylistCollection playlists = {this.newPlaylistCollection} refresh={this.refresh}/>
 						<NewPlaylist refresh={this.refresh} />
+						<PlaylistCollection playlists = {this.newPlaylistCollection} refresh={this.refresh}/>
+						
 					</div>
 				</div>
 			</div>

@@ -8,6 +8,7 @@ import Playlist from '../src/components/playlist';
 import PlaylistCollection from '../src/components/playlistcollection';
 import NewPlaylist from '../src/components/newplaylist';
 import NewSong from '../src/components/newsong';
+import ExternalLinks from '../src/components/externallinks';
 
 const sampleSong = {
 	name: "Just Wait",
@@ -53,3 +54,6 @@ storiesOf("Playlist App/NewSong", module).add("default", () => {
 	return <NewSong />
 })
 
+storiesOf("Playlist app/ExternalLinks", module).add("default", () => {
+	return <ExternalLinks />
+})

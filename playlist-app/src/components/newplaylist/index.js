@@ -17,7 +17,6 @@ export default class NewPlaylist extends Component {
 	// Updates the state of this component with whatever name is in the text box
 	handleNameChange = (event) => {
 		this.setState({name: event.target.value}, () => {
-			console.log(this.state);
 		});
 	}
 

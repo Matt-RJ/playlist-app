@@ -1,9 +1,9 @@
 import React, {Component} from "react";
 import "./song.css";
+import {Link} from 'react-router-dom';
 import api from "../../dataStore/stubAPI.js";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMinus} from "@fortawesome/free-solid-svg-icons";
-import {faStar} from "@fortawesome/free-solid-svg-icons";
+import {faMinus, faStar, faSearch} from "@fortawesome/free-solid-svg-icons";
 
 export default class Song extends Component {
 
@@ -53,14 +53,19 @@ export default class Song extends Component {
                     </tr>
                     <tr>
                       <td>Rating</td>
-                      <td class="song-rating-stars" className="song-rating-stars">{this.createStars(this.props.song.rating)}</td>
+                      <td className="song-rating-stars">{this.createStars(this.props.song.rating)}</td>
                     </tr>
                   </tbody>
                 </table>
-                <button type="button" className="btn btn-danger float-right" onClick={this.deleteSong}>
-                  <FontAwesomeIcon icon={faMinus} /> Delete
-                </button>
               </div>
+              <Link to={"external/playlist-" + this.props.playlistId + "/song-" + this.props.id}>
+                <button type="button" className="btn btn-info">
+                  <FontAwesomeIcon icon={faSearch} /> Search for this song
+                </button>
+              </Link>
+              <button type="button" className="btn btn-danger float-right" onClick={this.deleteSong}>
+                <FontAwesomeIcon icon={faMinus} /> Delete
+              </button>
             </div>
           </div>
       </React.Fragment>

@@ -21,33 +21,23 @@ export default class NewSong extends Component {
   }
 
   handleNamechange = (event) => {
-    this.setState({"name": event.target.value}, () => {
-      console.log(this.state);
-    });
+    this.setState({"name": event.target.value});
   }
 
   handleArtistChange = (event) => {
-    this.setState({"artist": event.target.value}, () => {
-      console.log(this.state);
-    });
+    this.setState({"artist": event.target.value});
   }
 
   handleAlbumChange = (event) => {
-    this.setState({"album": event.target.value}, () => {
-      console.log(this.state);
-    });
+    this.setState({"album": event.target.value});
   }
 
   handleLengthChange = (event) => {
-    this.setState({"length": event.target.value}, () => {
-      console.log(this.state);
-    });
+    this.setState({"length": event.target.value});
   }
 
   handleRatingChange(rating) {
-    this.setState({"rating": rating}, () => {
-      console.log(this.state);
-    })
+    this.setState({"rating": rating});
   }
 
   createSong = (event) => {
