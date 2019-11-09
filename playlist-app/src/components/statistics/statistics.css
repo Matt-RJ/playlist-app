@@ -1,0 +1,9 @@
+.statistics-container {
+  background-color: red;
+}
+
+.stats-page {
+  background-image: url("/../prism.png");
+  background-color: #333333;
+  min-height: 100vh;
+}

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from "lodash";
 
 class StubAPI {
   constructor() {
@@ -33,20 +33,28 @@ class StubAPI {
         [
           {
             "id": 1,
-            "name": 'Another Sunny Day',
-            "artist": 'JABBERLOOP',
-            "album": 'New',
-            "length": '4:02',
-            "rating": '4'
+            "name": "Another Sunny Day",
+            "artist": "JABBERLOOP",
+            "album": "New",
+            "length": "4:02",
+            "rating": "5"
           },
           {
             "id": 2,
-            "name": 'Moanin\'',
-            "artist": 'Mingus Big Band',
-            "album": 'Nostalgia In Times Square',
-            "length": '9:02',
-            "rating": '4'
-        } 
+            "name": "Moanin\"",
+            "artist": "Mingus Big Band",
+            "album": "Nostalgia In Times Square",
+            "length": "9:02",
+            "rating": "4"
+          },
+          {
+            "id": 3,
+            "name": "Minor Swing",
+            "artist": "Django Reinhardt",
+            "album": "Djangologie Vol 6 / 1937",
+            "length": "3:17",
+            "rating": "5"
+          }
         ]
       }
     ]
@@ -122,6 +130,26 @@ class StubAPI {
      _.find(playlist.songs, {id: songId})), 1);
     if (callback) callback();
   }
+
+  getBiggestPlaylist() {
+    console.log("GETTING BIGGEST PLAYLIST")
+    if (this.playlistCollection.length === 0) {
+      return undefined;
+    }
+
+    let max = _.maxBy(this.playlistCollection,"songs");
+    return max;
+  }
+
+  getSmallestPlaylist() {
+    console.log("GETTING SMALLEST PLAYLIST")
+    if (this.playlistCollection.length === 0) {
+      return undefined;
+    }
+    let min = _.minBy(this.playlistCollection, "songs");
+    return min;
+  }
+
 }
 
 

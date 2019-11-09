@@ -74,7 +74,7 @@ export default class NewSong extends Component {
     return (
       <div className="radio">
         <label>
-          <input required type="radio" name="new-song-rating" onClick={() => this.handleRatingChange(ratingValue)}></input>
+          <input required={true} type="radio" name="new-song-rating" onClick={() => this.handleRatingChange(ratingValue)}></input>
           {this.createStars(ratingValue)}
         </label>
       </div>
@@ -91,19 +91,19 @@ export default class NewSong extends Component {
             <div className="col">
               <div className="form-group row">
                 <label className="control-label col-xs-2" htmlFor="new-song-name">Name</label>
-                <input required type="text" className="form-control col-xs-10" id="new-song-name" onChange={this.handleNamechange}></input>
+                <input required={true} type="text" className="form-control col-xs-10" id="new-song-name" onChange={this.handleNamechange}></input>
               </div>
               <div className="form-group row">
                 <label className="control-label col-xs-2" htmlFor="new-song-artist">Artist</label>
-                <input required type="text" className="form-control col-xs-10" id="new-song-artist" onChange={this.handleArtistChange}></input>
+                <input required={true} type="text" className="form-control col-xs-10" id="new-song-artist" onChange={this.handleArtistChange}></input>
               </div>
               <div className="form-group row">
                 <label className="control-label col-xs-2" htmlFor="new-song-album">Album</label>
-                <input required type="text" className="form-control col-xs-10" id="new-song-album" onChange={this.handleAlbumChange}></input>
+                <input required={true} type="text" className="form-control col-xs-10" id="new-song-album" onChange={this.handleAlbumChange}></input>
               </div>
               <div className="form-group row">
                 <label className="control-label col-xs-2" htmlFor="new-song-length">Length</label>
-                <input required type="text" className="form-control col-xs-10" id="new-song-length" placeholder="E.g. 4:53" onChange={this.handleLengthChange}></input>
+                <input required={true} type="text" className="form-control col-xs-10" id="new-song-length" placeholder="E.g. 4:53" onChange={this.handleLengthChange}></input>
               </div>
               <div className="form-group">
                 <label className="control-label" htmlFor="new-song-rating">Rating</label>

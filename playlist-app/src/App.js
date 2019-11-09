@@ -59,10 +59,11 @@ class App extends Component {
 
 	render() {
 		this.prepareComponentData();
+		api.getBiggestPlaylist();
 
 		return (
 			<div className="PlaylistApp">
-				<div className="container-fluid col-md-8 bg-secondary p-2 rounded">
+				<div className="container-fluid col-md-8 bg-secondary p-2 rounded main-container">
 					<Header 
 						className="main-header"
 						noPlaylists={this.headerPlaylistCount}
