@@ -15,9 +15,15 @@ This app is used for creating different playlists of one's favourite songs. Play
 
 ## Setup.
 
+##### Launch the App
 1. From the base folder (containing manifest.json, src, etc.), run 'npm install' to install the required node modules.
 2. Run 'npm start' from the same directory to start the app on localhost.
 3. Go to 'localhost:3000' in a browser to open the app.
+
+##### Run Storybook to develop components
+1. From the base folder (containing manifest.json, src, etc.), run 'npm install' to install the required node modules.
+2. Run 'npx start-storybook -p 9001 -c .storybook' from the same base directory.
+3. Go to 'localhost:9001' in a browser to open Storybook.
 
 ## Data Model Design.
 
