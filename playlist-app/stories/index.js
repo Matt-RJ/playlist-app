@@ -1,6 +1,7 @@
 import React from 'react';
 import {storiesOf} from '@storybook/react';
 import 'bootstrap/dist/css/bootstrap.css';
+import {MemoryRouter, Route} from 'react-router';
 
 import Header from '../src/components/header/';
 import Song from '../src/components/song/';
@@ -31,18 +32,27 @@ storiesOf("Playlist App/Header", module).add("default", () => (
 	<Header noPlaylists={5} noSongs={35} />
 ));
 
-storiesOf("Playlist App/Song", module).add("default", () => (
+storiesOf("Playlist App/Song", module)
+.addDecorator(story => (
+	<MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+)).add("default", () => (
 	<Song
 		song = {sampleSong}
 	/>
 ));
 
-storiesOf("Playlist App/Playlist", module).add("default", () => {
+storiesOf("Playlist App/Playlist", module)
+.addDecorator(story => (
+	<MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+)).add("default", () => {
 	const sampleSongs = [sampleSong, sampleSong];
 	return <Playlist name={"Favourites"} songs = {sampleSongs} />
 });
 
-storiesOf("Playlist App/PlaylistCollection", module).add("default", () => {
+storiesOf("Playlist App/PlaylistCollection", module)
+.addDecorator(story => (
+	<MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+)).add("default", () => {
 	return <PlaylistCollection playlists = {samplePlaylistCollection.playlists} />
 })
 
@@ -54,6 +64,9 @@ storiesOf("Playlist App/NewSong", module).add("default", () => {
 	return <NewSong />
 })
 
-storiesOf("Playlist app/ExternalLinks", module).add("default", () => {
+storiesOf("Playlist app/ExternalLinks", module)
+.addDecorator(story => (
+	<MemoryRouter initialEntries={["/"]}>{story()}</MemoryRouter>
+)).add("default", () => {
 	return <ExternalLinks />
 })
