@@ -1,17 +1,24 @@
 // Load the http module to create a HTTP server
 
-import http from 'http';
 import dotenv from 'dotenv';
+import express from 'express';
+import bodyParser from 'body-parser';
+import playlistCollectionRouter from './api/playlistcollection';
+import playlistsRouter from './api/playlists';
 
 dotenv.config();
 
+const app = express();
+
 const port = process.env.PORT;
 
-const server = http.createServer((req,res) => {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World!');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
+app.use('/api/playlists', playlistsRouter);
+
+app.use('/api/playlistcollection', playlistCollectionRouter);
+app.use(express.static('public'));
+
+app.listen(port, ()=> {
+  console.info(`Server running at ${port}`);
 });
-
-server.listen(port);
-
-console.log(`Server running at ${port}`);
