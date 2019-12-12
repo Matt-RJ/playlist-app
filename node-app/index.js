@@ -3,7 +3,6 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
-import playlistCollectionRouter from './api/playlistcollection';
 import playlistsRouter from './api/playlists';
 
 dotenv.config();
@@ -16,7 +15,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use('/api/playlists', playlistsRouter);
 
-app.use('/api/playlistcollection', playlistCollectionRouter);
 app.use(express.static('public'));
 
 app.listen(port, ()=> {

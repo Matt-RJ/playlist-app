@@ -39,6 +39,15 @@ router.post('/', (req,res) => {
   return res.status(400).send({message: "Unable to find Playlist in request"});
 });
 
+// Get biggest playlist
+router.get('/biggest', (req, res) => {
+  biggestPlaylist = stubAPI.getBiggestPlaylist()
+  if (biggestPlaylist) {
+    return res.status(200).send({biggestPlaylist: biggestPlaylist});
+  }
+  return res.status(400).send({message: "Unable to find Playlist"});
+});
+
 // Get a playlist
 router.get('/:playlistId', (req,res) => {
   const playlistId = req.params.playlistId;

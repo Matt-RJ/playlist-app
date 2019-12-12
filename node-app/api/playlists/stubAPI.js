@@ -75,6 +75,7 @@ const playlistCollection = [
 const stubAPI = {
 
   getAll: () => {
+    console.log("Stub API: playlistCollection: " + playlistCollection);
     return playlistCollection;
   },
 

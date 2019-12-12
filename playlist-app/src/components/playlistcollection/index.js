@@ -10,6 +10,8 @@ export default class PlaylistCollection extends Component {
 	constructor(props) {
 		super(props);
 
+		console.log(this.state);
+
 		this.state = {
 			playlists: [
 				
