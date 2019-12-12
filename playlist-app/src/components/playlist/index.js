@@ -5,7 +5,7 @@ import "./playlist.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {faMinus} from "@fortawesome/free-solid-svg-icons";
-import api from "../../dataStore/stubAPI.js";
+import * as api from "../../api.js";
 
 export default class Playlist extends Component {
 
@@ -15,14 +15,13 @@ export default class Playlist extends Component {
 
   deletePlaylist = (event) => {
     event.preventDefault();
-    api.deletePlaylist(this.props.id, () => {
-      this.props.refresh();
-    });
-
+    let playlistId = this.props.id;
+    api.deletePlaylist(this.props.id).then(
+      this.props.refresh()
+    );
   }
 
   render() {
-
     let songsInPlaylist = null;
     let playlistName = "";
     let songCount = 0;

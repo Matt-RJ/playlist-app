@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./song.css";
 import {Link} from 'react-router-dom';
-import api from "../../dataStore/stubAPI.js";
+import * as api from "../../api.js";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMinus, faStar, faSearch} from "@fortawesome/free-solid-svg-icons";
 
@@ -12,7 +12,7 @@ export default class Song extends Component {
   }
 
   deleteSong = (event) => {
-    api.deleteSong(this.props.playlistId, this.props.id, () => {
+    api.deleteSong(this.props.playlistId, this.props.id).then(res => {
       this.props.refresh();
     });
   }
@@ -25,7 +25,6 @@ export default class Song extends Component {
   }
 
   render() {
-    
     return (
       <React.Fragment>
         <div className="container-fluid">

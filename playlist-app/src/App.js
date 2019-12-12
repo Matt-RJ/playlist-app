@@ -39,12 +39,7 @@ class App extends Component {
 		return totalSongs;
 	}
 	
-
-	refresh = () => {
-		this.setState({});
-	}
-
-	componentDidMount() {
+	updatePlaylistCollection() {
 		api.getAll().then(res => {
 			console.log(res);
 			this.setState({
@@ -56,9 +51,18 @@ class App extends Component {
 			if (this.state.playlistCollection) {
 				this.headerPlaylistCount = this.getPlaylistCount(this.state.playlistCollection);
 				this.headerSongCount = this.getSongCount(this.state.playlistCollection);
+				console.log(this.headerPlaylistCount, this.headerSongCount);
 			}
-			this.refresh();
+			this.setState({}); // Forces the total playlists/songs header to update
 		});
+	}
+
+	refresh = () => {
+		this.updatePlaylistCollection();
+	}
+
+	componentDidMount() {
+		this.updatePlaylistCollection();
 	}
 	
 	render() {
@@ -73,7 +77,6 @@ class App extends Component {
 					<div className="col-md-12 playlist-collection-container">
 						<NewPlaylist refresh={this.refresh} />
 						<PlaylistCollection playlists = {this.state.playlistCollection} refresh={this.refresh}/>
-						
 					</div>
 				</div>
 			</div>

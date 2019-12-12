@@ -75,12 +75,11 @@ const playlistCollection = [
 const stubAPI = {
 
   getAll: () => {
-    console.log("Stub API: playlistCollection: " + playlistCollection);
     return playlistCollection;
   },
 
   addPlaylist: (name) => {
-    console.log(name);
+    console.log("New playlist name: " + name);
     if (!name) return false;
     let id = 1;
     let songs=[];
@@ -169,6 +168,7 @@ const stubAPI = {
       return undefined;
     }
     let min = _.minBy(playlistCollection, "songs");
+    console.log("min": min);
     return min;
   },
 

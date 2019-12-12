@@ -6,21 +6,34 @@ const router = express.Router();
 /*
 Summary
 
-/api/
+/api/playlists/
 GET - Get playlistcollection(all playlists)
 POST - Add a new playlist
 
-/api/:playlistId
+/api/playlists/:playlistId
 GET - Get a playlist
 DELETE - Delete a playlist
 
-/api/:playlistId/song
+/api/playlists/:playlistId/song
 GET - Get all songs of a playlist
 POST - Add a new song to a playlist
 
-/api/:playlistId/song/:songId
+/api/playlists/:playlistId/song/:songId
 GET - Get a song from a playlist
 DELETE - Delete a song from a playlist
+
+/api/playlists/stats/biggestplaylist/
+GET - Get biggest playlist
+
+/api/playlists/stats/smallestplaylist/
+GET - Get smallest playlist
+
+/api/playlists/stats/bestsong/
+GET - Get highest-rated song
+
+/api/playlists/stats/worstsong/
+GET - Get lowest-rated song
+
 */
 
 // Get playlistCollection
@@ -32,20 +45,12 @@ router.get('/', (req,res) => {
 // Add a new playlist
 router.post('/', (req,res) => {
   const newPlaylist = req.body;
+  console.log(req.body);
 
   if (newPlaylist && stubAPI.addPlaylist(newPlaylist.name)) {
     return res.status(201).send({message: "Playlist created."});
   }
   return res.status(400).send({message: "Unable to find Playlist in request"});
-});
-
-// Get biggest playlist
-router.get('/biggest', (req, res) => {
-  biggestPlaylist = stubAPI.getBiggestPlaylist()
-  if (biggestPlaylist) {
-    return res.status(200).send({biggestPlaylist: biggestPlaylist});
-  }
-  return res.status(400).send({message: "Unable to find Playlist"});
 });
 
 // Get a playlist
@@ -76,7 +81,8 @@ router.delete('/:playlistId', (req,res) => {
 
 // Create a new song in a playlist
 router.post('/:playlistId/song', (req,res) => {
-  const newSong = req.body;
+  const newSong = req.body.song;
+  console.log(newSong);
   const playlistId = req.params.playlistId;
 
   if (newSong && stubAPI.addSong(
@@ -134,4 +140,37 @@ router.delete('/:playlistId/song/:songId', (req,res) => {
   }
 });
 
+// Get biggest playlist /api/playlists/stats/worstsong/
+router.get('/stats/biggestplaylist', (req, res) => {
+  let biggestPlaylist = stubAPI.getBiggestPlaylist();
+  if (biggestPlaylist) {
+    return res.status(200).send({biggestPlaylist: biggestPlaylist});
+  }
+  return res.status(400).send({message: "Unable to find Playlist"});
+});
+
+// Get smallest playlist
+router.get('/stats/smallestplaylist', (req, res) => {
+  let smallestPlaylist = stubAPI.getSmallestPlaylist();
+  if (smallestPlaylist) {
+    return res.status(200).send({smallestPlaylist: smallestPlaylist});
+  }
+  return res.status(400).send({message: "Unable to find Playlist"});
+});
+
+router.get('/stats/bestsong', (req,res) => {
+  let bestSong = stubAPI.getHighestRatedSong();
+  if (bestSong) {
+    return res.status(200).send({bestSong: bestSong});
+  }
+  return res.status(400).send({message: "Unable to find Song"});
+});
+
+router.get('/stats/worstsong', (req,res) => {
+  let worstSong = stubAPI.getLowestRatedSong();
+  if (worstSong) {
+    return res.status(200).send({worstSong: worstSong});
+  }
+  return res.status(400).send({message: "Unable to find Song"});
+});
 export default router;

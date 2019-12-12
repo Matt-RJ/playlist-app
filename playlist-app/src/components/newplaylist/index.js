@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import "./newplaylist.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
-import api from "../../dataStore/stubAPI.js";
+import * as api from '../../api';
 
 export default class NewPlaylist extends Component {
 
@@ -20,16 +20,13 @@ export default class NewPlaylist extends Component {
 		});
 	}
 
-  handleSubmit = () => {
-    this.props.updateParent();
-  }
-
 	createPlaylist = (event) => {
+    console.log(this.state);
     event.preventDefault();
-		api.addPlaylist(this.state.name, () => {
+		api.addPlaylist(this.state.name).then(res => {
       this.props.refresh();
-		});
-	}
+    });
+  }
 
   render() {
     

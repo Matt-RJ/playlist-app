@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import "./newsong.css";
 import "../../fontawesome";
-import api from "../../dataStore/stubAPI.js";
+import * as api from '../../api';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {faStar} from "@fortawesome/free-solid-svg-icons";
@@ -17,7 +17,7 @@ export default class NewSong extends Component {
       "album": "",
       "length": "",
       "rating": ""
-    }
+    };
   }
 
   handleNamechange = (event) => {
@@ -42,6 +42,7 @@ export default class NewSong extends Component {
 
   createSong = (event) => {
     event.preventDefault();
+    /*
     api.addSong(this.props.playlistId,
                 this.state.name,
                 this.state.artist,
@@ -49,6 +50,13 @@ export default class NewSong extends Component {
                 this.state.length,
                 this.state.rating,
                 ()=> {
+      this.props.refresh();
+    });
+    */
+
+    console.log(this.state);
+
+    api.addSong(this.props.playlistId, this.state).then(res => {
       this.props.refresh();
     });
   }

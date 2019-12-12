@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, withRouter} from 'react-router-dom';
 import {Link} from 'react-router-dom';
-import api from '../../dataStore/stubAPI.js';
+import * as api from '../../api';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faArrowLeft} from "@fortawesome/free-solid-svg-icons";
 import './statistics.css';
@@ -13,61 +13,87 @@ class Statistics extends Component {
   }
   
   getBiggestPlaylist() {
-    let playlist = api.getBiggestPlaylist();
-    if (playlist === undefined) {
-      return (
-        <React.Fragment>There are no playlists</React.Fragment>
-      ); 
-    }
-    else {
-      let songs = playlist.songs.length;
-      let songString = (songs === 1) ? "song" : "songs"; 
-      return (
-        <React.Fragment>'{playlist.name}', with {songs} {songString} in it.</React.Fragment>
-      );
-    }
+    api.getBiggestPlaylist().then(res => {
+      let playlist = res.biggestPlaylist;
+      console.log(playlist);
+      if (!playlist) {
+        return (
+          <React.Fragment>There are no playlists</React.Fragment>
+        ); 
+      }
+      else {
+        console.log(playlist);
+        let songs = playlist.songs.length;
+        let songString = (songs === 1) ? "song" : "songs"; 
+        return (
+          <React.Fragment>'{playlist.name}', with {songs} {songString} in it.</React.Fragment>
+        );
+      }
+    });
   }
   
   getSmallestPlaylist() {
-    let playlist = api.getSmallestPlaylist();
-    if (playlist === undefined) {
-      return (
-        <React.Fragment>There are no playlists</React.Fragment>
-      );
-    }
-    else {
-      let songs = playlist.songs.length
-      let songString = (songs === 1) ? "song" : "songs";
-      return (
-        <React.Fragment>'{playlist.name}', with {songs} {songString} in it.</React.Fragment>
-      );
-    }
+    api.getSmallestPlaylist().then(res => {
+      let playlist = res.smallestPlaylist;
+      if (!playlist) {
+        return (
+          <React.Fragment>There are no playlists</React.Fragment>
+        );
+      }
+      else {
+        let songs = playlist.songs.length
+        let songString = (songs === 1) ? "song" : "songs";
+        return (
+          <React.Fragment>'{playlist.name}', with {songs} {songString} in it.</React.Fragment>
+        );
+      }
+    });
   }
 
   getHighestRatedSong() {
-    let highestRated = api.getHighestRatedSong();
-    if (highestRated === undefined) return null;
-    let highestRatedSong = api.getSongById(highestRated[0],highestRated[1]);
-    return highestRatedSong;
+    api.getHighestRatedSong().then(res => {
+      let highestRated = res.bestSong; 
+      if (!highestRated) return null;
+      let highestRatedSong = api.getSong(highestRated[0],highestRated[1]).then(res => {
+        return res.highestRatedSong;
+      });
+    });
   }
 
   getLowestRatedSong() {
-    let lowestRated = api.getLowestRatedSong();
-    if (lowestRated === undefined) return null;
-    let lowestRatedSong = api.getSongById(lowestRated[0], lowestRated[1]);
-    return lowestRatedSong;
+    api.getLowestRatedSong().then(res => {
+      let lowestRated = res.worstSong;
+      if (!lowestRated) return null;
+      let lowestRatedSong = api.getSong(lowestRated[0], lowestRated[1]).then(res => {
+        return res.lowestRatedSong;
+      });
+    });
+  }
+
+  prepareStats() {
+    this.getBiggestPlaylist();
+    this.getSmallestPlaylist();
+    this.getHighestRatedSong();
+    this.getLowestRatedSong();
+  }
+
+  componentDidMount() {
+    this.prepareStats(() => {
+      console.log("Done");
+      this.setState({});
+    });
   }
   
   
   render() {
 
-    let biggestPlaylist = this.getBiggestPlaylist();
-    let smallestPlaylist = this.getSmallestPlaylist();
-    let highestRatedSong = this.getHighestRatedSong();
-    let lowestRatedSong = this.getLowestRatedSong();
+    let biggestPlaylist = this.biggestPlaylist;
+    let smallestPlaylist = this.smallestPlaylist;
+    let highestRatedSong = this.highestRatedSong;
+    let lowestRatedSong = this.lowestRatedSong;
 
-    let highestRatingMessage = (highestRatedSong !== undefined) ? "'"+highestRatedSong.name + "', with a rating of " + highestRatedSong.rating : "No songs";
-    let lowestRatingMessage = (lowestRatedSong !== undefined) ? "'"+lowestRatedSong.name + "', with a rating of " + lowestRatedSong.rating : "No songs";
+    let highestRatingMessage = (highestRatedSong) ? "'"+highestRatedSong.name + "', with a rating of " + highestRatedSong.rating : "No songs";
+    let lowestRatingMessage = (lowestRatedSong) ? "'"+lowestRatedSong.name + "', with a rating of " + lowestRatedSong.rating : "No songs";
 
     return (
       <React.Fragment>
