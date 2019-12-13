@@ -9,10 +9,11 @@ export default class Song extends Component {
 
   constructor(props) {
     super(props);
+    console.log(this.props);
   }
 
   deleteSong = (event) => {
-    api.deleteSong(this.props.playlistId, this.props.id).then(res => {
+    api.deleteSong(this.props.id).then(res => {
       this.props.refresh();
     });
   }

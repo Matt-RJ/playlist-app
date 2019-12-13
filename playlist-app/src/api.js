@@ -25,11 +25,11 @@ export const addSong = (playlistId, song) => {
 };
 
 export const getSong = (playlistId, songId) => {
-  return axios.post(`/api/playlists/${playlistId}/song/${songId}`).then(resp => resp.data);
+  return axios.post(`/api/playlists/song/${songId}`).then(resp => resp.data);
 };
 
 export const deleteSong = (playlistId, songId) => {
-  return axios.delete(`/api/playlists/${playlistId}/song/${songId}`).then(resp => resp.data);
+  return axios.delete(`/api/playlists/song/${songId}`).then(resp => resp.data);
 };
 
 export const getBiggestPlaylist = () => {

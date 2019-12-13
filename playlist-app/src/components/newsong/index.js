@@ -41,22 +41,7 @@ export default class NewSong extends Component {
   }
 
   createSong = (event) => {
-    event.preventDefault();
-    /*
-    api.addSong(this.props.playlistId,
-                this.state.name,
-                this.state.artist,
-                this.state.album,
-                this.state.length,
-                this.state.rating,
-                ()=> {
-      this.props.refresh();
-    });
-    */
-
-    console.log(this.state);
-
-    api.addSong(this.props.playlistId, this.state).then(res => {
+    api.addSong(this.props.id, this.state).then(res => {
       this.props.refresh();
     });
   }

@@ -79,7 +79,6 @@ class Statistics extends Component {
 
   componentDidMount() {
     this.prepareStats(() => {
-      console.log("Done");
       this.setState({});
     });
   }

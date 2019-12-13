@@ -168,7 +168,6 @@ const stubAPI = {
       return undefined;
     }
     let min = _.minBy(playlistCollection, "songs");
-    console.log("min": min);
     return min;
   },
 

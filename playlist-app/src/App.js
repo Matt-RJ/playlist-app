@@ -43,7 +43,7 @@ class App extends Component {
 		api.getAll().then(res => {
 			console.log(res);
 			this.setState({
-				playlistCollection: res.playlistCollection,
+				playlistCollection: res,
 			});
 			console.log("This playlist collection: " + this.state.playlistCollection);
 			this.headerPlaylistCount = 0;

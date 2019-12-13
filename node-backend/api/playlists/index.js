@@ -1,5 +1,9 @@
 import express from 'express';
-import stubAPI from './stubAPI';
+//import stubAPI from './stubAPI';
+
+import Playlist from './playlistsModel';
+import asyncHandler from 'express-async-handler';
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
@@ -7,20 +11,20 @@ const router = express.Router();
 Summary
 
 /api/playlists/
-GET - Get playlistcollection(all playlists)
-POST - Add a new playlist
+GET - Get playlistcollection(all playlists) -
+POST - Add a new playlist -
 
 /api/playlists/:playlistId
-GET - Get a playlist
-DELETE - Delete a playlist
+GET - Get a playlist -
+DELETE - Delete a playlist -
 
 /api/playlists/:playlistId/song
-GET - Get all songs of a playlist
-POST - Add a new song to a playlist
+GET - Get all songs of a playlist -
+POST - Add a new song to a playlist -
 
-/api/playlists/:playlistId/song/:songId
-GET - Get a song from a playlist
-DELETE - Delete a song from a playlist
+/api/playlists/song/:songId
+GET - Get a song
+DELETE - Delete a song from a playlist -
 
 /api/playlists/stats/biggestplaylist/
 GET - Get biggest playlist
@@ -37,108 +41,78 @@ GET - Get lowest-rated song
 */
 
 // Get playlistCollection
-router.get('/', (req,res) => {
-  const playlistCollection = stubAPI.getAll();
-  res.send({playlistCollection: playlistCollection});
+router.get('/', async (req,res) => {
+  try {
+    let playlistCollection = await Playlist.find();
+    console.log(playlistCollection);
+    res.status(200).json(playlistCollection);
+  } catch (error) {
+    handleError(res, error.message);
+  }
 });
 
 // Add a new playlist
-router.post('/', (req,res) => {
-  const newPlaylist = req.body;
-  console.log(req.body);
-
-  if (newPlaylist && stubAPI.addPlaylist(newPlaylist.name)) {
-    return res.status(201).send({message: "Playlist created."});
+router.post('/', asyncHandler(async (req,res) => {
+  const newPlaylist = {
+    "name": req.body.name
   }
-  return res.status(400).send({message: "Unable to find Playlist in request"});
-});
+  const playlist = await(Playlist.create(newPlaylist));
+  res.status(201).json(playlist);
+}));
 
 // Get a playlist
-router.get('/:playlistId', (req,res) => {
+router.get('/:playlistId', asyncHandler(async (req,res) => {
   const playlistId = req.params.playlistId;
-  const playlist = stubAPI.getPlaylist(parseInt(playlistId));
-
-  if (playlist) {
-    return res.status(200).send(playlist);
-  }
-  else {
-    return res.status(404).send({message: `Unable to find Playlist ${playlistId}`});
-  }
-});
+  const playlist = await(Playlist.findById(req.params.playlistId));
+  if (!playlist) return res.send(404);
+  return res.status(200).send(playlist);
+}));
 
 // Delete a playlist
-router.delete('/:playlistId', (req,res) => {
-  const playlistId = req.params.playlistId;
-
-  if (stubAPI.deletePlaylist(parseInt(playlistId))) {
-    return res.status(200).send({message: `Deleted Playlist ${playlistId}`});
-  }
-  else {
-    return res.status(404).send({message: `Unable to find Playlist ${playlistId}`});
-  }
-
-});
-
-// Create a new song in a playlist
-router.post('/:playlistId/song', (req,res) => {
-  const newSong = req.body.song;
-  console.log(newSong);
-  const playlistId = req.params.playlistId;
-
-  if (newSong && stubAPI.addSong(
-    parseInt(playlistId),
-    newSong.name,
-    newSong.artist, 
-    newSong.album, 
-    newSong.length,
-    newSong.rating)) 
-  {
-    return res.status(201).send({message: "Song created."});
-  }
-  else {
-    return res.status(400).send({message: "Unable to find Song in request"});
-  }
-});
+router.delete('/:playlistId', asyncHandler(async (req,res) => {
+  const playlist = await Playlist.findById(req.params.playlistId);
+  if (!playlist) return res.send(404);
+  await playlist.remove();
+  return res.status(204).send(playlist);
+}));
 
 // Get all songs of a playlist
-router.get('/:playlistId/song', (req,res) => {
+router.get('/:playlistId/song', asyncHandler(async (req,res) => {
   const playlistId = req.params.playlistId;
-  const playlist = stubAPI.getPlaylist(parseInt(playlistId));
+  const playlist = await Playlist.findById(req.params.playlistId);
+  if (!playlist) return res.status(404);
+  return res.status(200).send(playlist.songs);
+}));
 
-  if (playlist) {
-    return res.status(200).send(playlist.songs);
-  }
-  else {
-    return res.status(404).send({message: `Unable to find Playlist ${playlistId}`});
-  }
-});
+// Create a new song in a playlist
+router.post('/:playlistId/song', asyncHandler(async (req,res) => {
+  let newsong = req.body.song;
+  const song = await(Playlist.findOneAndUpdate({"_id": req.params.playlistId},{$push: {songs: newsong}}));
+  res.status(201).json(song);
+}));
 
-// Get a specific song from a playlist
-router.get('/:playlistId/song/:songId', (req,res) => {
-  const playlistId = req.params.playlistId;
+// Get a song
+router.get('/song/:songId', asyncHandler(async (req,res) => {
   const songId = req.params.songId;
-  const song = stubAPI.getSong(parseInt(playlistId), parseInt(songId));
+  const song = await(Playlist.find({"songs._id": songId}));
+  if (!song) return res.status(404);
+  return res.status(200).send(song);
+}));
 
-  if (song) {
-    return res.status(200).send(song);
-  }
-  else {
-    return res.status(404).send({message: `Unable to find Song`});
-  }
-});
-
-// Delete a song from a playlist
-router.delete('/:playlistId/song/:songId', (req,res) => {
-  const playlistId = req.params.playlistId;
+// Delete a song
+router.delete('/song/:songId', asyncHandler(async (req,res) => {
   const songId = req.params.songId;
+  const song = await(Playlist.find({"songs._id": songId}));
+  if (!song) return res.status(404);
+  await song.remove();
+  return res.status(204).send(song);
+}));
 
-  if (stubAPI.deleteSong(parseInt(playlistId), parseInt(songId))) {
-    return res.status(200).send({message: `Deleted Song ${songId} in Playlist ${playlistId}`});
-  }
-  else {
-    return res.status(404).send({message: `Unable to find Song`});
-  }
-});
+
+
+
+
+
 
 // Get biggest playlist /api/playlists/stats/worstsong/
 router.get('/stats/biggestplaylist', (req, res) => {
@@ -173,4 +147,9 @@ router.get('/stats/worstsong', (req,res) => {
   }
   return res.status(400).send({message: "Unable to find Song"});
 });
+
+function handleError(res,err) {
+  return res.send(500, err);
+}
+
 export default router;

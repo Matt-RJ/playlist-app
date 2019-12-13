@@ -15,9 +15,8 @@ export default class Playlist extends Component {
 
   deletePlaylist = (event) => {
     event.preventDefault();
-    let playlistId = this.props.id;
     api.deletePlaylist(this.props.id).then(
-      this.props.refresh()
+      () => this.props.refresh()
     );
   }
 
@@ -25,15 +24,15 @@ export default class Playlist extends Component {
     let songsInPlaylist = null;
     let playlistName = "";
     let songCount = 0;
-    if (this.props.songs !== undefined && this.props.songs !== null) {
+    if (this.props.songs) {
       songsInPlaylist = this.props.songs.map(s => (
       <li className="list-group-item playlist border-0">
-        {<Song song={s} playlistId={this.props.id} id={s.id} refresh={this.props.refresh}/>}
+        {<Song song={s} playlistId={this.props.playlistId} id={s._id} refresh={this.props.refresh}/>}
       </li>
       ));
       songCount = this.props.songs.length;
     }
-    if (this.props.name !== undefined && this.props.name !== null) {
+    if (this.props.name) {
       playlistName = this.props.name;
     }
 
@@ -50,7 +49,7 @@ export default class Playlist extends Component {
               {songsInPlaylist}
 
               <li className="list-group-item border-0">
-                <NewSong playlistId={this.props.id} refresh={this.props.refresh}/>
+                <NewSong id={this.props.id} playlistId={this.props.playlistId} refresh={this.props.refresh}/>
               </li>
               <li className="list-group-item border-0">
                 <button type="submit" className="btn btn-danger float-right" onClick={this.deletePlaylist}>
