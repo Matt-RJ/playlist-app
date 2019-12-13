@@ -13,7 +13,9 @@ export default class Song extends Component {
   }
 
   deleteSong = (event) => {
-    api.deleteSong(this.props.id).then(res => {
+    console.log("SONG ID: " + this.props.id);
+    let toDeleteId = this.props.id;
+    api.deleteSong(toDeleteId).then(res => {
       this.props.refresh();
     });
   }

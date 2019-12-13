@@ -24,11 +24,11 @@ export const addSong = (playlistId, song) => {
   return axios.post(`/api/playlists/${playlistId}/song`, {song: song}).then(resp => resp.data);
 };
 
-export const getSong = (playlistId, songId) => {
-  return axios.post(`/api/playlists/song/${songId}`).then(resp => resp.data);
+export const getSong = (songId) => {
+  return axios.get(`/api/playlists/song/${songId}`).then(resp => resp.data);
 };
 
-export const deleteSong = (playlistId, songId) => {
+export const deleteSong = (songId) => {
   return axios.delete(`/api/playlists/song/${songId}`).then(resp => resp.data);
 };
 
